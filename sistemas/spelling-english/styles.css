@@ -287,3 +287,129 @@
   table{ border:1px solid #bbb; }
   th, td{ border-color:#ddd; }
 }
+
+/* ===== Mobile improvements ===== */
+@media (max-width: 760px){
+
+  /* reduce padding del frame para móvil */
+  .systemInner{
+    padding: 12px !important;
+  }
+
+  /* títulos más compactos */
+  .systemFrame h1{
+    font-size: 20px;
+    line-height: 1.15;
+  }
+
+  /* inputs y selects ocupan 100% */
+  .systemFrame input,
+  .systemFrame select{
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* filas se apilan */
+  .systemFrame .row{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* controles se apilan mejor */
+  .systemFrame .controls{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .systemFrame .mini{
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  /* sliders ocupan todo el ancho */
+  .systemFrame .rangeWrap{
+    min-width: 0 !important;
+    width: 100%;
+  }
+
+  .systemFrame input[type="range"]{
+    width: 100% !important;
+  }
+
+  /* botones grandes y cómodos para dedo */
+  .systemFrame button{
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* botones en fila: si quieres 2 por fila */
+  .systemFrame .mini button{
+    width: 100%;
+  }
+
+  /* grid de letras: celdas un poco más pequeñas */
+  .systemFrame .grid{
+    grid-template-columns: repeat(auto-fit, minmax(62px, 1fr));
+    gap: 8px;
+  }
+
+  .systemFrame .cell{
+    min-height: 68px;
+    border-radius: 14px;
+  }
+
+  .systemFrame .letter{
+    font-size: 20px;
+  }
+
+  /* tabla: scroll suave en móvil */
+  .systemFrame .tableWrap{
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Un ajuste extra para pantallas MUY pequeñas */
+@media (max-width: 380px){
+  .systemFrame .grid{
+    grid-template-columns: repeat(auto-fit, minmax(54px, 1fr));
+  }
+}
+
+.systemTopBar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin: 0 0 14px;
+}
+
+@media (max-width: 760px){
+  .systemTopBar{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .systemTopBar a.btn{
+    width: 100%;
+    justify-content: center;
+  }
+}
+.systemTopBar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin: 0 0 14px;
+}
+
+@media (max-width: 760px){
+  .systemTopBar{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .systemTopBar a.btn{
+    width: 100%;
+    justify-content: center;
+  }
+}
