@@ -23,3 +23,44 @@
   border: 1px solid rgba(15, 23, 42, 0.10);
   background: rgba(255,255,255,0.8);
 }
+
+/* Integra páginas de sistemas con el header/footer del colegio */
+.pageShell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageMain {
+  flex: 1;
+  padding: 28px 0 56px;
+}
+
+.systemContainer {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+}
+
+/* Frame con estilo del sitio principal */
+.systemFrame{
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  background: white;
+  box-shadow: 0 25px 60px rgba(15,23,42,0.14);
+}
+
+.systemFrame--light{
+  background:
+    radial-gradient(800px 320px at 15% 5%, rgba(47,108,246,0.10), transparent 60%),
+    radial-gradient(700px 320px at 85% 0%, rgba(12,206,161,0.08), transparent 60%),
+    white;
+}
+
+.systemInner{
+  padding: 18px;
+}
+
+@media (min-width: 920px){
+  .systemInner{ padding: 22px; }
+}

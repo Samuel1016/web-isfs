@@ -99,9 +99,9 @@
         </div>
 
         <!-- Frame para contener tu sistema -->
-        <div class="systemFrame">
-          <!-- Tu sistema tal cual (solo body interno) -->
-          <div class="wrap">
+        <div class="systemFrame systemFrame--light">
+  <div class="systemInner">
+    <div class="wrap">
             <h1>Spelling: letras + pronunciación + audio + dictado + tabla imprimible</h1>
             <p>
               Escribe una palabra (o frase). Verás cada letra separada con su pronunciación aproximada en español.
@@ -173,17 +173,8 @@
                   <div style="flex:1; min-width:260px;">
                     <label>Configuración de pronunciación (texto debajo de cada letra)</label>
                     <div class="hint" style="margin-top:0;">
-                      <span class="pill">Puedes cambiar “Y” a “yei” si así lo enseñas</span>
                       <span class="pill">También puedes editar otras letras</span>
                     </div>
-                  </div>
-                </div>
-
-                <div class="inline">
-                  <div><b>Nota docente:</b> Para “Y”, en inglés suele ser <span class="mono">/waɪ/</span> (“wai”). Si en tu clase usan <span class="mono">(yei)</span>, actívalo abajo.</div>
-                  <div class="printBar">
-                    <button id="btnYwai" class="secondary">Y = wai</button>
-                    <button id="btnYyei" class="secondary">Y = yei</button>
                   </div>
                 </div>
 
@@ -220,6 +211,7 @@
                 </div>
               </div>
             </div>
+          </div>
           </div>
           <!-- /Tu sistema -->
         </div>
