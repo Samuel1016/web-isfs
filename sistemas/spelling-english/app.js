@@ -474,9 +474,17 @@ $rateLabel.textContent = Number($rate.value).toFixed(1);
 $pitchLabel.textContent = Number($pitch.value).toFixed(1);
 $pauseLabel.textContent = String($pause.value);
 
-renderWord($word.value);
-renderAlphabetTable();
+document.addEventListener("DOMContentLoaded", () => {
+  $word.value = "HAPPY";
 
-if (!("speechSynthesis" in window)) {
-  setStatus("Tu navegador no soporta speechSynthesis. Prueba Chrome o Edge en PC.");
-}
+  $rateLabel.textContent = Number($rate.value).toFixed(1);
+  $pitchLabel.textContent = Number($pitch.value).toFixed(1);
+  $pauseLabel.textContent = String($pause.value);
+
+  renderWord($word.value);
+  renderAlphabetTable();
+
+  if (!("speechSynthesis" in window)) {
+    setStatus("Tu navegador no soporta speechSynthesis. Prueba Chrome o Edge en PC.");
+  }
+});
