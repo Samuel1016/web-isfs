@@ -394,22 +394,16 @@
     justify-content: center;
   }
 }
-.systemTopBar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin: 0 0 14px;
+/* ===== Horizontal scroll para tabla en móvil ===== */
+.systemFrame .tableWrap{
+  overflow-x: auto !important;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  width: 100%;
 }
 
-@media (max-width: 760px){
-  .systemTopBar{
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .systemTopBar a.btn{
-    width: 100%;
-    justify-content: center;
-  }
+/* Asegura que exista algo que "sobrepase" para poder scrollear */
+.systemFrame table{
+  min-width: 720px; /* puedes subir a 800 si quieres */
 }
