@@ -44,10 +44,16 @@
 /* Frame con estilo del sitio principal */
 .systemFrame{
   border-radius: 20px;
-  overflow: hidden;
+  overflow: visible; /* ✅ permite scroll interno horizontal */
   border: 1px solid rgba(15, 23, 42, 0.10);
   background: white;
   box-shadow: 0 25px 60px rgba(15,23,42,0.14);
+}
+
+/* Mantenemos el borde redondeado aquí (solo visual) */
+.systemInner{
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .systemFrame--light{
