@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Spelling English | FERNANDO STAHL - ISFS</title>
+
+
+  <!-- Estilos del colegio -->
+  <link rel="stylesheet" href="../../styles.css" />
+  <!-- Estilos puente para integrar páginas -->
+  <link rel="stylesheet" href="../../shared/site-layout.css" />
+  <!-- Estilos del sistema -->
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <div class="pageShell">
+    <!-- Header del colegio -->
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <a class="brand" href="../../index.html#home" aria-label="Ir a inicio">
+          <div class="brand__logo" aria-hidden="true">ISFS</div>
+<div class="brand__text">
+  <strong>FERNANDO STAHL - ISFS</strong>
+  <span>Excelencia • Valores • Futuro</span>
+</div>
+
+        </a>
+
+        <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <a class="nav__link" href="../../index.html#home">Home</a>
+          <a class="nav__link" href="../../index.html#about">Sobre Nosotros</a>
+          <a
+  href="https://wa.me/51997371687?text=Quiero%20mas%20informacion%20de%20la%20institucion"
+  target="_blank"
+  rel="noopener"
+  class="btn btn--primary"
+>
+  💬 Escríbenos por WhatsApp
+</a>
+
+
+          <!-- Dropdown: SISTEMAS -->
+          <div class="dropdown">
+            <button class="dropdown__btn" type="button" aria-haspopup="true" aria-expanded="false">
+              Sistemas
+              <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </button>
+
+            <div class="dropdown__menu" role="menu" aria-label="Submenú de sistemas">
+              <a role="menuitem" class="dropdown__item" href="../teorema-de-pitagoras/index.html">
+                Teorema de Pitágoras
+              </a>
+
+              <a role="menuitem" class="dropdown__item" href="../spelling-english/index.html">
+                Spelling English
+              </a>
+
+              <a role="menuitem" class="dropdown__item" href="../juegos-matematicos/index.html">
+                Juegos Matemáticos
+              </a>
+
+              <a role="menuitem" class="dropdown__item" href="../sumas-y-restas/index.html">
+                Sumas y Restas
+              </a>
+
+              <div class="dropdown__divider" aria-hidden="true"></div>
+
+              <a role="menuitem" class="dropdown__item" href="../../index.html#contact">
+                Solicitar acceso
+              </a>
+            </div>
+          </div>
+
+          <a class="nav__link nav__cta" href="../../index.html#contact">Contáctanos</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Contenido -->
+    <main class="pageMain">
+      <div class="systemContainer">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin: 0 0 14px;">
+          <div>
+            <h2 style="margin:0;">Spelling English</h2>
+            <p style="margin:6px 0 0; color: rgba(11,18,32,0.70);">
+              Módulo interactivo de letras + pronunciación + audio + dictado.
+            </p>
+          </div>
+
+          <a class="btn btn--ghost" href="../../index.html#sistemas">← Volver a Sistemas</a>
+        </div>
+
+        <!-- Frame para contener tu sistema -->
+        <div class="systemFrame">
+          <!-- Tu sistema tal cual (solo body interno) -->
+          <div class="wrap">
+            <h1>Spelling: letras + pronunciación + audio + dictado + tabla imprimible</h1>
+            <p>
+              Escribe una palabra (o frase). Verás cada letra separada con su pronunciación aproximada en español.
+              Además, puedes reproducir el <b>audio en inglés</b> (nombres de letras) y hacer un <b>dictado automático</b> con pausas.
+            </p>
+
+            <div class="two">
+              <div class="card">
+                <div class="row">
+                  <div style="flex:1; min-width:260px;">
+                    <label for="word">Palabra / frase</label>
+                    <input id="word" type="text" placeholder="Ej: HAPPY" autocomplete="off" />
+                  </div>
+
+                  <div>
+                    <button id="btnShow">Mostrar</button>
+                  </div>
+                  <div>
+                    <button id="btnClear" class="secondary">Limpiar</button>
+                  </div>
+                </div>
+
+                <div class="hint">
+                  <span class="pill">Enter = mostrar</span>
+                  <span class="pill">Admite espacios</span>
+                  <span class="pill">Ignora signos (’ - . ,)</span>
+                  <span class="pill">Clic en una letra = escuchar esa letra</span>
+                </div>
+
+                <div class="controls">
+                  <div class="mini">
+                    <div>
+                      <label for="voice">Voz (speechSynthesis)</label>
+                      <select id="voice"></select>
+                    </div>
+
+                    <div class="rangeWrap">
+                      <label for="rate">Velocidad: <span id="rateLabel" class="mono">1.0</span></label>
+                      <input id="rate" type="range" min="0.6" max="1.4" value="1.0" step="0.1" />
+                    </div>
+
+                    <div class="rangeWrap">
+                      <label for="pitch">Tono: <span id="pitchLabel" class="mono">1.0</span></label>
+                      <input id="pitch" type="range" min="0.7" max="1.3" value="1.0" step="0.1" />
+                    </div>
+
+                    <div class="rangeWrap">
+                      <label for="pause">Pausa (ms): <span id="pauseLabel" class="mono">700</span></label>
+                      <input id="pause" type="range" min="250" max="1400" value="700" step="50" />
+                    </div>
+                  </div>
+
+                  <div class="mini">
+                    <button id="btnSpeakWord" class="good" title="Dice el spelling (A, B, C...)">🔊 Spelling (audio)</button>
+                    <button id="btnDictation" class="warn" title="Dictado automático con resaltado y pausas">📝 Dictado</button>
+                    <button id="btnStop" class="danger" title="Detener audio/dictado">⛔ Detener</button>
+                  </div>
+                </div>
+
+                <div id="status" class="status">
+                  <b>Estado:</b> listo. (Si no aparecen voces, espera 1–2 segundos; algunos navegadores cargan las voces con retraso.)
+                </div>
+
+                <div class="result" id="result" aria-live="polite"></div>
+              </div>
+
+              <div class="card">
+                <div class="row" style="align-items:flex-end;">
+                  <div style="flex:1; min-width:260px;">
+                    <label>Configuración de pronunciación (texto debajo de cada letra)</label>
+                    <div class="hint" style="margin-top:0;">
+                      <span class="pill">Puedes cambiar “Y” a “yei” si así lo enseñas</span>
+                      <span class="pill">También puedes editar otras letras</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="inline">
+                  <div><b>Nota docente:</b> Para “Y”, en inglés suele ser <span class="mono">/waɪ/</span> (“wai”). Si en tu clase usan <span class="mono">(yei)</span>, actívalo abajo.</div>
+                  <div class="printBar">
+                    <button id="btnYwai" class="secondary">Y = wai</button>
+                    <button id="btnYyei" class="secondary">Y = yei</button>
+                  </div>
+                </div>
+
+                <div class="result">
+                  <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+                    <div>
+                      <h3 style="margin:0 0 6px; font-size:16px;">Tabla del abecedario (imprimible)</h3>
+                      <div style="color:var(--muted); font-size:13px;">Letra + pronunciación (aprox. en español) + IPA (referencia)</div>
+                    </div>
+                    <div class="printBar">
+                      <button id="btnPrint" class="secondary">🖨️ Imprimir</button>
+                      <button id="btnCopyTable" class="secondary" title="Copia como texto">📋 Copiar tabla</button>
+                    </div>
+                  </div>
+
+                  <div class="tableWrap" style="margin-top:10px;">
+                    <table id="alphaTable" aria-label="Tabla del abecedario">
+                      <thead>
+                        <tr>
+                          <th>Letra</th>
+                          <th>Pronunciación (aprox.)</th>
+                          <th>IPA (nombre de la letra)</th>
+                          <th>Ejemplo</th>
+                          <th>Audio</th>
+                        </tr>
+                      </thead>
+                      <tbody id="alphaBody"></tbody>
+                    </table>
+                  </div>
+
+                  <div class="inline" style="margin-top:12px;">
+                    <b>Tip:</b> Si quieres que el dictado diga también “space” entre palabras, activa la opción en el código (busca <span class="mono">SAY_SPACE</span>).
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Tu sistema -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer del colegio (mismo estilo que tu index principal) -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>© <span id="year"></span> FERNANDO STAHL - ISFS. Todos los derechos reservados.</p>
+        <a class="link" href="#top">Volver arriba ↑</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS para navbar/dropdown -->
+  <script src="../../shared/site-layout.js"></script>
+  <!-- Año en footer -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- JS del sistema -->
+  <script src="./app.js"></script>
+</body>
+</html>

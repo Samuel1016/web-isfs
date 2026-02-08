@@ -1,0 +1,25 @@
+/* Integra páginas de sistemas con el header/footer del colegio */
+.pageShell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageMain {
+  flex: 1;
+  padding: 28px 0 56px;
+}
+
+/* Contenedor para que el sistema no se pegue a los bordes */
+.systemContainer {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+}
+
+/* “Tarjeta” para que el sistema se vea pro dentro del sitio */
+.systemFrame {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  background: rgba(255,255,255,0.8);
+}
