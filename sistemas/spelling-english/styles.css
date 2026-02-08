@@ -394,16 +394,21 @@
     justify-content: center;
   }
 }
-/* ===== Horizontal scroll para tabla en móvil ===== */
+/* ===== Horizontal scroll real para tabla en móvil ===== */
 .systemFrame .tableWrap{
+  display: block;
+  width: 100%;
+  max-width: 100%;
   overflow-x: auto !important;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-x;
-  width: 100%;
+  overscroll-behavior-x: contain;
+  border-radius: 14px; /* opcional */
 }
 
-/* Asegura que exista algo que "sobrepase" para poder scrollear */
+/* Asegura que haya overflow para scrollear */
 .systemFrame table{
-  min-width: 720px; /* puedes subir a 800 si quieres */
+  width: max-content;
+  min-width: 760px; /* en móvil se moverá sí o sí */
 }

@@ -53,7 +53,7 @@
 /* Mantenemos el borde redondeado aquí (solo visual) */
 .systemInner{
   border-radius: 20px;
-  overflow: hidden;
+  overflow: visible; /* ✅ permite scroll horizontal dentro */
 }
 
 .systemFrame--light{

@@ -153,9 +153,17 @@ function speakText(text, {voice=null, rate=1, pitch=1} = {}){
 
   return new Promise((resolve, reject) => {
     const utter = new SpeechSynthesisUtterance(text);
-    if (voice) utter.voice = voice;
-    utter.rate = rate;
-    utter.pitch = pitch;
+
+if (voice) {
+  utter.voice = voice;
+  utter.lang = voice.lang || "en-US";   // ✅ fuerza el idioma de la voz elegida
+} else {
+  utter.lang = "en-US";                // ✅ fallback a inglés
+}
+
+utter.rate = rate;
+utter.pitch = pitch;
+
 
     utter.onend = () => resolve();
     utter.onerror = (e) => reject(e);
