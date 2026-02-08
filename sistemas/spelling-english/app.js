@@ -450,18 +450,24 @@ $rate.addEventListener("input", () => $rateLabel.textContent = Number($rate.valu
 $pitch.addEventListener("input", () => $pitchLabel.textContent = Number($pitch.value).toFixed(1));
 $pause.addEventListener("input", () => $pauseLabel.textContent = String($pause.value));
 
-$btnYwai.addEventListener("click", () => {
-  letterPron.Y = "wai";
-  renderWord($word.value);
-  renderAlphabetTable();
-  setStatus('actualizado: Y = "wai"');
-});
-$btnYyei.addEventListener("click", () => {
-  letterPron.Y = "yei";
-  renderWord($word.value);
-  renderAlphabetTable();
-  setStatus('actualizado: Y = "yei"');
-});
+if ($btnYwai) {
+  $btnYwai.addEventListener("click", () => {
+    letterPron.Y = "wai";
+    renderWord($word.value);
+    renderAlphabetTable();
+    setStatus('actualizado: Y = "wai"');
+  });
+}
+
+if ($btnYyei) {
+  $btnYyei.addEventListener("click", () => {
+    letterPron.Y = "yei";
+    renderWord($word.value);
+    renderAlphabetTable();
+    setStatus('actualizado: Y = "yei"');
+  });
+}
+
 
 $btnPrint.addEventListener("click", () => window.print());
 $btnCopyTable.addEventListener("click", () => copyAlphabetTableAsText());
