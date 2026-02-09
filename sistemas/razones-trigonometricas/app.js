@@ -28,12 +28,13 @@
     return a || 1;
   }
 
+  // Fracción bonita: numerador arriba, barra, denominador abajo
   function fracHTML(n, d){
     return `<span class="frac"><sup>${n}</sup><span class="bar"></span><sub>${d}</sub></span>`;
   }
 
   function simplifyFraction(n, d){
-    if (d === 0) return { html: "No definida", undef: true };
+    if (d === 0) return { html: `<span class="undef">No definida</span>`, undef: true };
 
     const nR = Math.round(n);
     const dR = Math.round(d);
@@ -43,7 +44,7 @@
       const g = gcd(nR, dR);
       return { html: fracHTML(nR / g, dR / g), undef: false };
     }
-    // si no son enteros "bonitos", mostramos como fracción con decimales
+    // si no son enteros, fracción con decimales (igual con barra bonita)
     return { html: fracHTML(formatDecimal(n), formatDecimal(d)), undef: false };
   }
 
@@ -53,9 +54,22 @@
     const rhs = hyp*hyp;
     const tol = Math.max(1e-9, rhs * 1e-6);
     if (Math.abs(lhs - rhs) > tol){
-      return { ok:false, msg:"No cumple Pitágoras (igual se calculará con los lados ingresados)." };
+      return { ok:false, msg:"No cumple Pitágoras (igual se calcula con los lados ingresados)." };
     }
     return { ok:true, msg:"Triángulo válido (Pitágoras OK)." };
+  }
+
+  // ===== Etiquetas según ángulos (SOLO VISTA) =====
+  function angleLabel(value, fallbackLetter){
+    const n = parseNum(value);
+    if (n == null) return fallbackLetter;       // A o B
+    return `${formatDecimal(n)}°`;              // 37°
+  }
+
+  function fnLabel(fn, angleText){
+    // fn: sen, cos, tan, cot, sec, csc
+    // angleText: "37°" o "A"
+    return `${fn}(${angleText})`;
   }
 
   // ===== Fórmulas (texto fijo) =====
@@ -65,30 +79,48 @@
 
     box.innerHTML = `
       <div class="small" style="margin-bottom:10px;">
-        Fórmulas en triángulo rectángulo (usando lados):
+        Definiciones en triángulo rectángulo (usando lados):
       </div>
 
       <table>
         <thead>
           <tr>
             <th>Razón</th>
-            <th>Definición</th>
+            <th>Definición (con fracción)</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td class="op">seno (sen)</td><td class="mono">cateto opuesto / hipotenusa</td></tr>
-          <tr><td class="op">coseno (cos)</td><td class="mono">cateto adyacente / hipotenusa</td></tr>
-          <tr><td class="op">tangente (tan)</td><td class="mono">cateto opuesto / cateto adyacente</td></tr>
-          <tr><td class="op">cotangente (cot)</td><td class="mono">cateto adyacente / cateto opuesto</td></tr>
-          <tr><td class="op">secante (sec)</td><td class="mono">hipotenusa / cateto adyacente</td></tr>
-          <tr><td class="op">cosecante (csc)</td><td class="mono">hipotenusa / cateto opuesto</td></tr>
+          <tr>
+            <td class="op">seno (sen)</td>
+            <td class="val">${fracHTML("cateto opuesto", "hipotenusa")}</td>
+          </tr>
+          <tr>
+            <td class="op">coseno (cos)</td>
+            <td class="val">${fracHTML("cateto adyacente", "hipotenusa")}</td>
+          </tr>
+          <tr>
+            <td class="op">tangente (tan)</td>
+            <td class="val">${fracHTML("cateto opuesto", "cateto adyacente")}</td>
+          </tr>
+          <tr>
+            <td class="op">cotangente (cot)</td>
+            <td class="val">${fracHTML("cateto adyacente", "cateto opuesto")}</td>
+          </tr>
+          <tr>
+            <td class="op">secante (sec)</td>
+            <td class="val">${fracHTML("hipotenusa", "cateto adyacente")}</td>
+          </tr>
+          <tr>
+            <td class="op">cosecante (csc)</td>
+            <td class="val">${fracHTML("hipotenusa", "cateto opuesto")}</td>
+          </tr>
         </tbody>
       </table>
     `;
   }
 
-  // ===== Dibujo del triángulo (solo visual) =====
-  function drawTriangle(opp, adj, hyp){
+  // ===== Dibujo (visual). Usa lados y muestra A/B solo como texto =====
+  function drawTriangle(opp, adj, hyp, Atext, Btext){
     const cv = $("triCanvas");
     const legend = $("triLegend");
     if (!cv) return;
@@ -96,18 +128,14 @@
     const W = cv.width, H = cv.height;
 
     ctx.clearRect(0,0,W,H);
-
-    // Fondo
     ctx.fillStyle = "rgba(255,255,255,0.02)";
     ctx.fillRect(0,0,W,H);
 
-    // Si falta algo, dibuja el 3-4-5
     let a = adj, b = opp, c = hyp;
     if (!(a>0 && b>0 && c>0)){
       a = 4; b = 3; c = 5;
     }
 
-    // Para geometría, usamos catetos. La hipotenusa del dibujo será sqrt(a^2+b^2)
     const cPlot = Math.sqrt(a*a + b*b);
 
     const pad = 70;
@@ -152,34 +180,38 @@
     ctx.lineTo(x1, y1 - s);
     ctx.stroke();
 
-    // Labels
+    // Labels lados
     ctx.fillStyle = "rgba(238,242,255,0.92)";
     ctx.font = "18px system-ui, -apple-system, Segoe UI, Roboto, Arial";
 
-    ctx.fillText(`cateto adyacente = ${formatDecimal(a)}`, (x1 + x2)/2 - 120, y1 + 32);
-    ctx.fillText(`cateto opuesto = ${formatDecimal(b)}`, x1 - 155, (y1 + y3)/2);
+    ctx.fillText(`adyacente = ${formatDecimal(a)}`, (x1 + x2)/2 - 95, y1 + 32);
+    ctx.fillText(`opuesto = ${formatDecimal(b)}`, x1 - 110, (y1 + y3)/2);
     ctx.fillText(`hipotenusa ≈ ${formatDecimal(cPlot)}`, (x2 + x3)/2 + 12, (y2 + y3)/2 - 12);
+
+    // Texto de ángulos SOLO VISUAL (no afecta cálculos)
+    ctx.font = "17px system-ui, -apple-system, Segoe UI, Roboto, Arial";
+    ctx.fillText(`∠A = ${Atext}`, x2 - 120, y2 - 18);
+    ctx.fillText(`∠B = ${Btext}`, x3 + 10, y3 + 30);
 
     if (legend){
       legend.innerHTML =
-        `Lados ingresados: opuesto=${formatDecimal(b)}, adyacente=${formatDecimal(a)}, hipotenusa=${formatDecimal(c)}. ` +
-        `<span class="muted">(Dibujo usa hipotenusa ≈ ${formatDecimal(cPlot)})</span>`;
+        `Visual: ∠A=${Atext}, ∠B=${Btext}. ` +
+        `Cálculo por lados: opuesto=${formatDecimal(b)}, adyacente=${formatDecimal(a)}, hipotenusa=${formatDecimal(c)}.`;
     }
   }
 
-  // ===== Resultados por lados =====
-  function buildRow(title, fracObj, dec){
+  function buildRow(labelLeft, fracObj, dec){
     if (fracObj.undef || !isFinite(dec)){
       return `
         <tr>
-          <td class="op">${title}</td>
+          <td class="op">${labelLeft}</td>
           <td><div class="val"><span class="undef">No definida</span><div class="muted mono">∞</div></div></td>
         </tr>
       `;
     }
     return `
       <tr>
-        <td class="op">${title}</td>
+        <td class="op">${labelLeft}</td>
         <td>
           <div class="val">
             <span class="exact">Fracción</span>
@@ -200,8 +232,13 @@
     const outA = $("outA");
     const outB = $("outB");
 
+    // Etiquetas de ángulo SOLO VISUAL
+    const Atext = angleLabel($("a")?.value, "A");
+    const Btext = angleLabel($("b")?.value, "B");
+
     if (opp == null || adj == null || hyp == null){
       if (sideStatus) sideStatus.innerHTML = `<span class="bad">Completa cateto opuesto, cateto adyacente e hipotenusa.</span>`;
+      drawTriangle(null, null, null, Atext, Btext);
       return;
     }
 
@@ -212,27 +249,42 @@
         : `<span class="warn">⚠ ${chk.msg}</span>`;
     }
 
-    // Razones (solo por lados)
-    const sinV = hyp === 0 ? Infinity : opp / hyp;
-    const cosV = hyp === 0 ? Infinity : adj / hyp;
-    const tanV = adj === 0 ? Infinity : opp / adj;
+    // Para A (definición): opuesto=opp, adyacente=adj
+    const sinA = hyp === 0 ? Infinity : opp / hyp;
+    const cosA = hyp === 0 ? Infinity : adj / hyp;
+    const tanA = adj === 0 ? Infinity : opp / adj;
+    const cotA = opp === 0 ? Infinity : adj / opp;
+    const secA = adj === 0 ? Infinity : hyp / adj;
+    const cscA = opp === 0 ? Infinity : hyp / opp;
 
-    const cotV = opp === 0 ? Infinity : adj / opp;
-    const secV = adj === 0 ? Infinity : hyp / adj;
-    const cscV = opp === 0 ? Infinity : hyp / opp;
+    // Para B (se invierten catetos): opuesto=adj, adyacente=opp
+    const sinB = hyp === 0 ? Infinity : adj / hyp;
+    const cosB = hyp === 0 ? Infinity : opp / hyp;
+    const tanB = opp === 0 ? Infinity : adj / opp;
+    const cotB = adj === 0 ? Infinity : opp / adj;
+    const secB = opp === 0 ? Infinity : hyp / opp;
+    const cscB = adj === 0 ? Infinity : hyp / adj;
 
-    const sinF = simplifyFraction(opp, hyp);
-    const cosF = simplifyFraction(adj, hyp);
-    const tanF = simplifyFraction(opp, adj);
-    const cotF = simplifyFraction(adj, opp);
-    const secF = simplifyFraction(hyp, adj);
-    const cscF = simplifyFraction(hyp, opp);
+    // Fracciones bonitas
+    const sinAf = simplifyFraction(opp, hyp);
+    const cosAf = simplifyFraction(adj, hyp);
+    const tanAf = simplifyFraction(opp, adj);
+    const cotAf = simplifyFraction(adj, opp);
+    const secAf = simplifyFraction(hyp, adj);
+    const cscAf = simplifyFraction(hyp, opp);
 
-    const tableHTML = `
+    const sinBf = simplifyFraction(adj, hyp);
+    const cosBf = simplifyFraction(opp, hyp);
+    const tanBf = simplifyFraction(adj, opp);
+    const cotBf = simplifyFraction(opp, adj);
+    const secBf = simplifyFraction(hyp, opp);
+    const cscBf = simplifyFraction(hyp, adj);
+
+    // Tabla para A
+    const tableA = `
       <div class="mono" style="margin-bottom:10px">
-        Resultados (calculados solo con lados)
+        Resultados para A (solo etiqueta, cálculo por lados)
       </div>
-
       <div class="tableWrap">
         <table>
           <thead>
@@ -242,76 +294,91 @@
             </tr>
           </thead>
           <tbody>
-            ${buildRow("sen = opuesto / hipotenusa", sinF, sinV)}
-            ${buildRow("cos = adyacente / hipotenusa", cosF, cosV)}
-            ${buildRow("tan = opuesto / adyacente", tanF, tanV)}
-            ${buildRow("cot = adyacente / opuesto", cotF, cotV)}
-            ${buildRow("sec = hipotenusa / adyacente", secF, secV)}
-            ${buildRow("csc = hipotenusa / opuesto", cscF, cscV)}
+            ${buildRow(fnLabel("sen", Atext), sinAf, sinA)}
+            ${buildRow(fnLabel("cos", Atext), cosAf, cosA)}
+            ${buildRow(fnLabel("tan", Atext), tanAf, tanA)}
+            ${buildRow(fnLabel("cot", Atext), cotAf, cotA)}
+            ${buildRow(fnLabel("sec", Atext), secAf, secA)}
+            ${buildRow(fnLabel("csc", Atext), cscAf, cscA)}
           </tbody>
         </table>
       </div>
     `;
 
-    if (outA) outA.innerHTML = tableHTML;
-
-    if (outB) outB.innerHTML = `
-      <div class="mono" style="margin-bottom:10px">Datos del triángulo</div>
-      <div class="kpi">
-        <div class="chip">Opuesto: <span class="mono">${formatDecimal(opp)}</span></div>
-        <div class="chip">Adyacente: <span class="mono">${formatDecimal(adj)}</span></div>
-        <div class="chip">Hipotenusa: <span class="mono">${formatDecimal(hyp)}</span></div>
+    // Tabla para B
+    const tableB = `
+      <div class="mono" style="margin-bottom:10px">
+        Resultados para B (solo etiqueta, cálculo por lados)
+      </div>
+      <div class="tableWrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Razón</th>
+              <th>Valor (fracción y decimal)</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${buildRow(fnLabel("sen", Btext), sinBf, sinB)}
+            ${buildRow(fnLabel("cos", Btext), cosBf, cosB)}
+            ${buildRow(fnLabel("tan", Btext), tanBf, tanB)}
+            ${buildRow(fnLabel("cot", Btext), cotBf, cotB)}
+            ${buildRow(fnLabel("sec", Btext), secBf, secB)}
+            ${buildRow(fnLabel("csc", Btext), cscBf, cscB)}
+          </tbody>
+        </table>
       </div>
     `;
 
-    drawTriangle(opp, adj, hyp);
+    if (outA) outA.innerHTML = tableA;
+    if (outB) outB.innerHTML = tableB;
+
+    drawTriangle(opp, adj, hyp, Atext, Btext);
   }
 
-  function clearSides(){
+  function clearAll(){
+    // No tocar ángulos (son vista), solo limpiar lados + resultados
     if ($("sideOpp")) $("sideOpp").value = "";
     if ($("sideAdj")) $("sideAdj").value = "";
     if ($("sideHyp")) $("sideHyp").value = "";
     if ($("sideStatus")) $("sideStatus").innerHTML = "";
     if ($("outA")) $("outA").innerHTML = "";
     if ($("outB")) $("outB").innerHTML = "";
-    drawTriangle(null, null, null);
+    const Atext = angleLabel($("a")?.value, "A");
+    const Btext = angleLabel($("b")?.value, "B");
+    drawTriangle(null, null, null, Atext, Btext);
   }
 
   function init(){
-    // Mensaje: ángulos no afectan
+    // Mensaje claro
     const status = $("status");
     if (status){
-      status.innerHTML = `<span class="warn">Los ángulos NO se usan. Este módulo calcula solo por lados.</span>`;
+      status.innerHTML = `<span class="warn">Los ángulos NO se usan para calcular. Solo son etiqueta/visual. El cálculo es por lados.</span>`;
     }
 
-    // Botones originales: que NO hagan cálculo por ángulo, solo por lados
+    // Botones originales: que recalculen por lados
     $("calc")?.addEventListener("click", (e) => { e.preventDefault(); calculateBySides(); });
     $("swap")?.addEventListener("click", (e) => {
       e.preventDefault();
       // swap SOLO visual
       const a = $("a"), b = $("b");
       if (a && b){ const tmp = a.value; a.value = b.value; b.value = tmp; }
+      calculateBySides();
     });
-    $("clear")?.addEventListener("click", (e) => {
-      e.preventDefault();
-      if ($("a")) $("a").value = "";
-      if ($("b")) $("b").value = "";
-      clearSides();
-    });
+    $("clear")?.addEventListener("click", (e) => { e.preventDefault(); clearAll(); });
 
-    // Botones nuevos
+    // Botones lados
     $("calcSides")?.addEventListener("click", calculateBySides);
-    $("clearSides")?.addEventListener("click", clearSides);
+    $("clearSides")?.addEventListener("click", clearAll);
 
-    // Enter en lados recalcula
-    ["sideOpp","sideAdj","sideHyp"].forEach(id => {
-      $(id)?.addEventListener("keydown", (e) => { if (e.key === "Enter") calculateBySides(); });
+    // Cambiar lados recalcula
+    ["sideOpp","sideAdj","sideHyp","a","b"].forEach(id => {
       $(id)?.addEventListener("change", calculateBySides);
+      $(id)?.addEventListener("keydown", (e) => { if (e.key === "Enter") calculateBySides(); });
     });
 
-    // Inicial
     renderFormulaBox();
-    drawTriangle(null, null, null);
+    calculateBySides(); // dibuja y prepara vista
   }
 
   document.addEventListener("DOMContentLoaded", init);
