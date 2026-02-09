@@ -1,0 +1,240 @@
+/* ===== Razones Trigonométricas - estilo claro acorde ISFS ===== */
+
+.rtWrap{
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+.rtGrid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 980px){
+  .rtGrid{ grid-template-columns: 430px 1fr; }
+}
+
+.rtCard{
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(15,23,42,0.10);
+  border-radius: 18px;
+  box-shadow: 0 14px 35px rgba(15,23,42,0.08);
+  padding: 14px;
+  overflow: hidden;
+}
+
+.rtTitle h3{
+  margin: 0 0 6px;
+  font-size: 16px;
+  color: rgba(11,18,32,0.92);
+}
+.rtTitle p{
+  margin: 0 0 10px;
+  color: rgba(11,18,32,0.70);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.rtRow{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:flex-end;
+}
+
+label{
+  display:block;
+  color: rgba(11,18,32,0.70);
+  font-size: 12px;
+  margin:10px 0 6px;
+  font-weight: 800;
+}
+
+input[type="number"]{
+  width: 180px;
+  max-width: 100%;
+  padding: 11px 12px;
+  border-radius: 14px;
+  border:1px solid rgba(15,23,42,0.12);
+  background: white;
+  color: rgba(11,18,32,0.92);
+  outline:none;
+}
+
+input[type="number"]:focus{
+  border-color: rgba(47,108,246,0.55);
+  box-shadow: 0 0 0 4px rgba(47,108,246,0.12);
+}
+
+.rtSmall{
+  font-size:12.5px;
+  color: rgba(11,18,32,0.66);
+  line-height:1.35;
+  margin-top: 10px;
+}
+
+.rtBtns{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+
+button{
+  cursor:pointer;
+  border:1px solid rgba(15,23,42,0.12);
+  background: rgba(47,108,246,0.10);
+  color: rgba(11,18,32,0.92);
+  padding:11px 12px;
+  border-radius:14px;
+  font-weight:900;
+}
+button:hover{ background: rgba(47,108,246,0.16); }
+button:active{ transform: translateY(1px); }
+
+button.secondary{
+  background: rgba(15,23,42,0.04);
+  font-weight:800;
+}
+button.secondary:hover{ background: rgba(15,23,42,0.07); }
+
+.rtStatus{
+  margin-top:10px;
+  font-size:12.5px;
+  color: rgba(11,18,32,0.68);
+  min-height: 18px;
+}
+.rtStatus .ok{ color: #16a34a; font-weight: 900; }
+.rtStatus .warn{ color: #d97706; font-weight: 900; }
+.rtStatus .bad{ color: #dc2626; font-weight: 900; }
+
+.mono{
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+}
+
+.rtKpi{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.chip{
+  padding:8px 10px;
+  border-radius:999px;
+  background: rgba(15,23,42,0.04);
+  border:1px solid rgba(15,23,42,0.10);
+  font-size:12.5px;
+  color: rgba(11,18,32,0.72);
+}
+
+/* tabla */
+.tableWrap{
+  overflow-x:auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  width: 100%;
+  max-width: 100%;
+}
+
+table{
+  width: 100%;
+  border-collapse:separate;
+  border-spacing:0;
+  border-radius:14px;
+  border:1px solid rgba(15,23,42,0.10);
+  background: rgba(15,23,42,0.03);
+  overflow:hidden;
+}
+
+th, td{
+  padding:10px 10px;
+  border-bottom:1px solid rgba(15,23,42,0.08);
+  vertical-align:top;
+}
+
+th{
+  position:sticky;
+  top:0;
+  background: rgba(255,255,255,0.95);
+  font-size:12.5px;
+  text-align:left;
+  color: rgba(11,18,32,0.70);
+  font-weight: 900;
+}
+
+tr:last-child td{ border-bottom:none; }
+
+.op{ white-space:nowrap; font-weight:900; color: rgba(11,18,32,0.90); }
+
+.val{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:baseline;
+}
+
+.exact{
+  padding:3px 8px;
+  border-radius:999px;
+  background: rgba(34,197,94,.12);
+  border:1px solid rgba(34,197,94,.25);
+  font-size:12px;
+  font-weight:900;
+}
+.approx{
+  padding:3px 8px;
+  border-radius:999px;
+  background: rgba(245,158,11,.12);
+  border:1px solid rgba(245,158,11,.25);
+  font-size:12px;
+  font-weight:900;
+}
+.undef{
+  padding:3px 8px;
+  border-radius:999px;
+  background: rgba(239,68,68,.12);
+  border:1px solid rgba(239,68,68,.25);
+  font-size:12px;
+  font-weight:900;
+}
+
+.muted{ color: rgba(11,18,32,0.66); }
+.mutedHead{
+  font-weight: 900;
+  color: rgba(11,18,32,0.70);
+  margin: 2px 0 10px;
+}
+
+/* split */
+.rtSplit{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+@media (min-width: 980px){
+  .rtSplit{ grid-template-columns: 1fr 1fr; }
+}
+
+/* Fracciones y raíces */
+.frac{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  line-height:1;
+  vertical-align:middle;
+}
+.frac sup, .frac sub{font-size:0.95em; padding:0 2px}
+.frac .bar{ width:100%; border-top:1.6px solid currentColor; margin:2px 0}
+
+.sqrt{ display:inline-flex; align-items:flex-end; }
+.sqrt .sign{ font-size:1.15em; padding-right:2px }
+.sqrt .radicand{ border-top:1.6px solid currentColor; padding:0 2px; margin-bottom:1px }
+
+/* móvil */
+@media (max-width: 760px){
+  input[type="number"]{ width: 100%; }
+  .rtBtns button{ width: 100%; }
+  table{ width: max-content; min-width: 680px; } /* scroll horizontal si hace falta */
+}

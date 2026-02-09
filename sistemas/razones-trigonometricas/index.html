@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Razones Trigonométricas | FERNANDO STAHL - ISFS</title>
+
+  <!-- Estilos del colegio -->
+  <link rel="stylesheet" href="../../styles.css" />
+  <!-- Layout compartido -->
+  <link rel="stylesheet" href="../../shared/site-layout.css" />
+  <!-- Estilos del sistema -->
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <div class="pageShell">
+    <!-- Header ISFS -->
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <a class="brand" href="../../index.html#home" aria-label="Ir a inicio">
+          <div class="brand__logo" aria-hidden="true">ISFS</div>
+          <div class="brand__text">
+            <strong>FERNANDO STAHL - ISFS</strong>
+            <span>Excelencia • Valores • Futuro</span>
+          </div>
+        </a>
+
+        <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <a class="nav__link" href="../../index.html#home">Home</a>
+          <a class="nav__link" href="../../index.html#about">Sobre Nosotros</a>
+
+          <!-- Dropdown Sistemas -->
+          <div class="dropdown">
+            <button class="dropdown__btn" type="button" aria-haspopup="true" aria-expanded="false">
+              Sistemas
+              <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </button>
+
+            <div class="dropdown__menu" role="menu" aria-label="Submenú de sistemas">
+              <a role="menuitem" class="dropdown__item" href="../teorema-de-pitagoras/index.html">Teorema de Pitágoras</a>
+              <a role="menuitem" class="dropdown__item" href="../spelling-english/index.html">Spelling English</a>
+
+              <!-- ✅ NUEVO -->
+              <a role="menuitem" class="dropdown__item" href="../razones-trigonometricas/index.html">Razones Trigonométricas</a>
+
+              <a role="menuitem" class="dropdown__item" href="../juegos-matematicos/index.html">Juegos Matemáticos</a>
+              <a role="menuitem" class="dropdown__item" href="../sumas-y-restas/index.html">Sumas y Restas</a>
+
+              <div class="dropdown__divider" aria-hidden="true"></div>
+              <a role="menuitem" class="dropdown__item" href="../../index.html#contact">Solicitar acceso</a>
+            </div>
+          </div>
+
+          <a class="nav__link" href="https://wa.me/51997371687?text=Quiero%20mas%20informacion%20de%20la%20institucion" target="_blank" rel="noopener">
+            WhatsApp
+          </a>
+
+          <a class="nav__link nav__cta" href="../../index.html#contact">Contáctanos</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Contenido -->
+    <main class="pageMain">
+      <div class="systemContainer">
+        <div class="systemTopBar">
+          <div>
+            <h2 class="systemTitle">Razones Trigonométricas</h2>
+            <p class="systemSubtitle">Triángulo rectángulo: muestra razones exactas (cuando se puede) y en decimal.</p>
+          </div>
+
+          <a class="btn btn--ghost" href="../../index.html#sistemas">← Volver a Sistemas</a>
+        </div>
+
+        <div class="systemFrame systemFrame--light">
+          <div class="systemInner">
+            <!-- Sistema -->
+            <div class="rtWrap">
+              <div class="rtGrid">
+                <section class="rtCard">
+                  <div class="rtTitle">
+                    <h3>Calculadora de Razones Trigonométricas</h3>
+                    <p>Triángulo rectángulo: A + B = 90° (C = 90°).</p>
+                  </div>
+
+                  <div class="rtRow">
+                    <div>
+                      <label for="a">Ángulo A (°)</label>
+                      <input id="a" type="number" step="0.0001" value="37" min="0" max="90" />
+                    </div>
+                    <div>
+                      <label for="b">Ángulo B (°) (opcional)</label>
+                      <input id="b" type="number" step="0.0001" value="53" min="0" max="90" />
+                    </div>
+                  </div>
+
+                  <div class="rtSmall">
+                    Si escribes A y B, se verificará que <span class="mono">A + B = 90</span>.  
+                    Si dejas B vacío, se calcula como <span class="mono">B = 90 − A</span>.
+                  </div>
+
+                  <div class="rtBtns">
+                    <button id="calc" type="button">Calcular</button>
+                    <button id="swap" type="button" class="secondary">Intercambiar A ↔ B</button>
+                    <button id="clear" type="button" class="secondary">Limpiar</button>
+                  </div>
+
+                  <div class="rtStatus" id="status"></div>
+
+                  <div class="rtKpi">
+                    <div class="chip">Exactos: <span class="mono">0°, 15°, 30°, 45°, 60°, 75°, 90°</span></div>
+                    <div class="chip">Otros: fracción aprox. + decimal</div>
+                  </div>
+                </section>
+
+                <section class="rtCard">
+                  <div class="rtSplit">
+                    <div>
+                      <div class="mutedHead">Resultados para A</div>
+                      <div id="outA"></div>
+                    </div>
+                    <div>
+                      <div class="mutedHead">Resultados para B</div>
+                      <div id="outB"></div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+            <!-- /Sistema -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>© <span id="year"></span> FERNANDO STAHL - ISFS. Todos los derechos reservados.</p>
+        <a class="link" href="#top">Volver arriba ↑</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Navbar -->
+  <script src="../../shared/site-layout.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- JS del sistema -->
+  <script src="./app.js"></script>
+</body>
+</html>
