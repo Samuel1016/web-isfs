@@ -111,6 +111,32 @@
                     <button id="swap" type="button" class="secondary">Intercambiar A ↔ B</button>
                     <button id="clear" type="button" class="secondary">Limpiar</button>
                   </div>
+                  <!-- === CÁLCULO POR LADOS (NO depende de ángulos) === -->
+<div class="card" style="margin-top:12px;">
+  <div class="row">
+    <div>
+      <label for="sideOpp">Cateto opuesto</label>
+      <input id="sideOpp" type="number" step="any" min="0" placeholder="Ej: 3" />
+    </div>
+
+    <div>
+      <label for="sideAdj">Cateto adyacente</label>
+      <input id="sideAdj" type="number" step="any" min="0" placeholder="Ej: 4" />
+    </div>
+
+    <div>
+      <label for="sideHyp">Hipotenusa</label>
+      <input id="sideHyp" type="number" step="any" min="0" placeholder="Ej: 5" />
+    </div>
+  </div>
+
+  <div class="btns">
+    <button id="calcSides">Calcular con lados</button>
+    <button id="clearSides" class="secondary">Limpiar lados</button>
+  </div>
+
+  <div class="status" id="sideStatus"></div>
+</div>
 
                   <div class="rtStatus" id="status"></div>
 
@@ -119,6 +145,24 @@
                     <div class="chip">Otros: fracción aprox. + decimal</div>
                   </div>
                 </section>
+                <!-- === TRIÁNGULO (solo visual, basado en lados) === -->
+<div class="card" style="margin-bottom:12px;">
+  <div style="
+    border:1px solid rgba(36,48,90,.9);
+    border-radius:16px;
+    overflow:hidden;
+    background:#0f1730;
+  ">
+    <canvas id="triCanvas" width="900" height="520" style="width:100%; height:280px; display:block;"></canvas>
+  </div>
+  <div class="status" id="triLegend" style="margin-top:10px;"></div>
+</div>
+
+<!-- === FÓRMULAS (lógica) === -->
+<div class="card" style="margin-bottom:12px;">
+  <div style="font-weight:700; margin:2px 0 10px">¿Cómo se calcula?</div>
+  <div id="formulaBox"></div>
+</div>
 
                 <section class="rtCard">
                   <div class="rtSplit">
