@@ -401,3 +401,94 @@ img { max-width: 100%; display: block; }
 .whatsapp-float:hover{
   background: #1ebe5d;
 }
+
+/* ===== Catálogo de Sistemas (Home) ===== */
+.sysGrid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+@media (min-width: 680px){
+  .sysGrid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1020px){
+  .sysGrid{ grid-template-columns: repeat(3, 1fr); }
+}
+
+.sysCard{
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.88);
+  box-shadow: 0 14px 35px rgba(15,23,42,0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: transform .08s ease, box-shadow .2s ease;
+}
+
+.sysCard:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 18px 45px rgba(15,23,42,0.12);
+}
+
+.sysIcon{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(47,108,246,0.10);
+  border: 1px solid rgba(47,108,246,0.18);
+  font-size: 20px;
+  flex: 0 0 auto;
+}
+
+.sysBody{ flex: 1; min-width: 0; }
+
+.sysTitle{
+  font-weight: 900;
+  color: rgba(11,18,32,0.92);
+  margin-bottom: 3px;
+}
+
+.sysDesc{
+  font-size: 13px;
+  line-height: 1.35;
+  color: rgba(11,18,32,0.70);
+  margin-bottom: 10px;
+}
+
+.sysTags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sysTag{
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(15,23,42,0.04);
+  color: rgba(11,18,32,0.72);
+  font-weight: 800;
+}
+
+.sysArrow{
+  font-weight: 900;
+  color: rgba(11,18,32,0.45);
+  margin-left: 4px;
+}
+
+.sysEmpty{
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px dashed rgba(15,23,42,0.18);
+  color: rgba(11,18,32,0.70);
+  background: rgba(15,23,42,0.02);
+}
