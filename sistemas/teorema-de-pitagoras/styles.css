@@ -1,0 +1,301 @@
+/* ===== Pitágoras - estilo claro acorde ISFS ===== */
+
+.pWrap{
+  width: min(1280px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 1050px){
+  .pWrap{ grid-template-columns: 1fr; }
+}
+
+/* Tarjetas del sistema */
+.pCard{
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(15,23,42,0.10);
+  border-radius: 18px;
+  box-shadow: 0 14px 35px rgba(15,23,42,0.08);
+  overflow: hidden;
+}
+
+.pHeader{
+  padding: 16px 16px 0 16px;
+}
+
+.pH3{
+  margin: 0 0 6px;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  color: rgba(11,18,32,0.92);
+}
+
+.pSub{
+  margin: 0 0 14px;
+  color: rgba(11,18,32,0.70);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.pContent{ padding: 16px; }
+
+label{
+  display:block;
+  font-size: 12.5px;
+  color: rgba(11,18,32,0.72);
+  margin-bottom: 6px;
+  font-weight: 800;
+}
+
+.row{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 560px){
+  .row{ grid-template-columns: 1fr; }
+}
+
+.mt12{ margin-top: 12px; }
+
+input[type="number"], select{
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,0.12);
+  background: white;
+  color: rgba(11,18,32,0.92);
+  outline: none;
+  font-size: 14px;
+}
+
+input[type="number"]:focus, select:focus{
+  border-color: rgba(47,108,246,0.55);
+  box-shadow: 0 0 0 4px rgba(47,108,246,0.12);
+}
+
+/* Botones */
+.controls{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 0;
+}
+
+button{
+  border: 1px solid rgba(15,23,42,0.12);
+  background: rgba(47,108,246,0.10);
+  color: rgba(11,18,32,0.92);
+  padding: 11px 12px;
+  border-radius: 14px;
+  cursor:pointer;
+  font-weight: 900;
+}
+
+button:hover{ background: rgba(47,108,246,0.16); }
+button:active{ transform: translateY(1px); }
+
+.ghost{
+  background: rgba(15,23,42,0.04);
+  font-weight: 800;
+}
+.ghost:hover{ background: rgba(15,23,42,0.07); }
+
+/* Toggles */
+.toggles{
+  margin-top: 14px;
+  display:grid;
+  gap: 10px;
+}
+
+.toggle{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(15,23,42,0.03);
+  gap: 10px;
+}
+
+.toggle span{
+  font-size: 13px;
+  color: rgba(11,18,32,0.70);
+  font-weight: 700;
+}
+
+.toggle input{
+  transform: scale(1.1);
+  accent-color: rgba(47,108,246,1);
+}
+
+/* Salida */
+.error{
+  color: #ef4444;
+  font-size: 13px;
+  margin-top: 10px;
+  display:none;
+  font-weight: 800;
+}
+
+.out{
+  margin-top: 14px;
+  border-top: 1px solid rgba(15,23,42,0.10);
+  padding-top: 14px;
+  display:grid;
+  gap: 10px;
+}
+
+.pill{
+  display:flex;
+  align-items:flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.80);
+}
+
+.pill strong{ font-size: 14px; color: rgba(11,18,32,0.92); }
+
+.rhs{
+  text-align:right;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.35;
+  white-space: pre-line;
+  color: rgba(11,18,32,0.90);
+}
+
+.hint{
+  color: rgba(11,18,32,0.66);
+  font-size: 12px;
+  margin-top: 8px;
+  line-height: 1.35;
+}
+
+.kbd{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(15,23,42,0.12);
+  background: rgba(15,23,42,0.04);
+  color: rgba(11,18,32,0.92);
+  font-size: 12px;
+}
+
+/* Canvas y cuaderno */
+.canvasWrap{
+  border-radius: 18px;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(15,23,42,0.03);
+  padding: 12px;
+  overflow:hidden;
+}
+
+canvas{
+  width: 100%;
+  height: 340px;
+  display:block;
+}
+
+@media (max-width: 1050px){
+  canvas{ height: 300px; }
+}
+
+.legend{
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: rgba(11,18,32,0.70);
+  font-size: 12.5px;
+  padding: 0 16px;
+}
+
+/* Modo cuaderno */
+.notebook{
+  border-radius: 18px;
+  border: 1px solid rgba(15,23,42,0.10);
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,.85), rgba(255,255,255,.72)),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.00) 0px,
+      rgba(255,255,255,0.00) 22px,
+      rgba(47,108,246,0.10) 23px,
+      rgba(255,255,255,0.00) 24px
+    );
+  padding: 14px 14px 12px 14px;
+  position: relative;
+  overflow:hidden;
+  margin: 0 16px 16px;
+}
+
+.notebook:before{
+  content:"";
+  position:absolute;
+  top:0; bottom:0;
+  left:42px;
+  width:2px;
+  background: rgba(239,68,68,0.30);
+}
+
+.nbTitle{
+  margin: 0 0 10px 0;
+  font-size: 15px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  color: rgba(11,18,32,0.92);
+  font-weight: 900;
+}
+.nbTitle small{
+  color: rgba(11,18,32,0.60);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.steps{
+  margin: 0;
+  padding-left: 60px;
+  list-style: decimal;
+}
+
+.steps li{
+  margin: 10px 0;
+  line-height: 1.4;
+  color: rgba(11,18,32,0.90);
+}
+
+.stepNote{
+  color: rgba(11,18,32,0.66);
+  font-size: 12.5px;
+  margin-top: 6px;
+  padding-left: 60px;
+}
+
+/* Barra superior del sistema */
+.systemTopBar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin: 0 0 14px;
+}
+
+.systemTitle{ margin:0; }
+.systemSubtitle{ margin:6px 0 0; color: rgba(11,18,32,0.70); }
+
+@media (max-width: 760px){
+  .systemTopBar{ flex-direction: column; align-items: stretch; }
+  .systemTopBar a.btn{ width: 100%; justify-content: center; }
+
+  .controls button{ width: 100%; }
+}

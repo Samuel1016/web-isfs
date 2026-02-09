@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teorema de Pitágoras | FERNANDO STAHL - ISFS</title>
+
+  <!-- Estilos del sitio principal -->
+  <link rel="stylesheet" href="../../styles.css" />
+  <!-- Estilos puente (layout sistemas) -->
+  <link rel="stylesheet" href="../../shared/site-layout.css" />
+  <!-- Estilos del sistema -->
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <div class="pageShell">
+    <!-- Header del colegio -->
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <a class="brand" href="../../index.html#home" aria-label="Ir a inicio">
+          <div class="brand__logo" aria-hidden="true">ISFS</div>
+          <div class="brand__text">
+            <strong>FERNANDO STAHL - ISFS</strong>
+            <span>Excelencia • Valores • Futuro</span>
+          </div>
+        </a>
+
+        <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav" id="nav">
+          <a class="nav__link" href="../../index.html#home">Home</a>
+          <a class="nav__link" href="../../index.html#about">Sobre Nosotros</a>
+
+          <div class="dropdown">
+            <button class="dropdown__btn" type="button" aria-haspopup="true" aria-expanded="false">
+              Sistemas
+              <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </button>
+
+            <div class="dropdown__menu" role="menu" aria-label="Submenú de sistemas">
+              <a role="menuitem" class="dropdown__item" href="../teorema-de-pitagoras/index.html">Teorema de Pitágoras</a>
+              <a role="menuitem" class="dropdown__item" href="../spelling-english/index.html">Spelling English</a>
+              <a role="menuitem" class="dropdown__item" href="../juegos-matematicos/index.html">Juegos Matemáticos</a>
+              <a role="menuitem" class="dropdown__item" href="../sumas-y-restas/index.html">Sumas y Restas</a>
+
+              <div class="dropdown__divider" aria-hidden="true"></div>
+
+              <a role="menuitem" class="dropdown__item" href="../../index.html#contact">Solicitar acceso</a>
+            </div>
+          </div>
+
+          <a class="nav__link" href="https://wa.me/51997371687?text=Quiero%20mas%20informacion%20de%20la%20institucion" target="_blank" rel="noopener">
+            WhatsApp
+          </a>
+
+          <a class="nav__link nav__cta" href="../../index.html#contact">Contáctanos</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Contenido -->
+    <main class="pageMain">
+      <div class="systemContainer">
+        <div class="systemTopBar">
+          <div>
+            <h2 class="systemTitle">Teorema de Pitágoras</h2>
+            <p class="systemSubtitle">Calcula hipotenusa o catetos, con solución paso a paso y gráfico.</p>
+          </div>
+
+          <a class="btn btn--ghost" href="../../index.html#sistemas">← Volver a Sistemas</a>
+        </div>
+
+        <div class="systemFrame systemFrame--light">
+          <div class="systemInner">
+            <!-- Sistema -->
+            <div class="pWrap">
+              <!-- Panel izquierdo -->
+              <section class="pCard">
+                <header class="pHeader">
+                  <h3 class="pH3">Pitágoras — calculadora (modo cuaderno)</h3>
+                  <p class="pSub">
+                    Calcula hipotenusa o catetos y mira el desarrollo completo.
+                    Atajos: <span class="kbd">Enter</span> calcula, <span class="kbd">Esc</span> limpia.
+                  </p>
+                </header>
+
+                <div class="pContent">
+                  <div class="row">
+                    <div>
+                      <label for="mode">Quiero calcular</label>
+                      <select id="mode">
+                        <option value="hyp">Hipotenusa (c) con catetos (a, b)</option>
+                        <option value="catA">Cateto a con (c, b)</option>
+                        <option value="catB">Cateto b con (c, a)</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label for="decimals">Decimales</label>
+                      <select id="decimals">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                        <option value="6">6</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row mt12">
+                    <div>
+                      <label for="a">Cateto a</label>
+                      <input id="a" type="number" inputmode="decimal" step="any" min="0" placeholder="Ej: 3" />
+                    </div>
+                    <div>
+                      <label for="b">Cateto b</label>
+                      <input id="b" type="number" inputmode="decimal" step="any" min="0" placeholder="Ej: 4" />
+                    </div>
+                  </div>
+
+                  <div class="row mt12">
+                    <div>
+                      <label for="c">Hipotenusa c</label>
+                      <input id="c" type="number" inputmode="decimal" step="any" min="0" placeholder="Ej: 5" />
+                    </div>
+                    <div>
+                      <label>Acciones</label>
+                      <div class="controls">
+                        <button id="btnCalc" type="button">Calcular</button>
+                        <button id="btnSwap" class="ghost" type="button">Intercambiar a ↔ b</button>
+                        <button id="btnClear" class="ghost" type="button">Limpiar</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="toggles">
+                    <label class="toggle">
+                      <span>Mostrar resultado en forma con raíz (exacta)</span>
+                      <input id="showRadical" type="checkbox" checked />
+                    </label>
+
+                    <label class="toggle">
+                      <span>Mostrar resultado en decimales (aprox.)</span>
+                      <input id="showDecimal" type="checkbox" checked />
+                    </label>
+
+                    <label class="toggle">
+                      <span>Mostrar solución paso a paso (cuaderno)</span>
+                      <input id="showSteps" type="checkbox" checked />
+                    </label>
+                  </div>
+
+                  <div id="error" class="error" role="alert"></div>
+
+                  <div class="out">
+                    <div class="pill">
+                      <div>
+                        <strong>Resultado</strong>
+                        <div class="hint" id="resultHint">—</div>
+                      </div>
+                      <div class="rhs" id="resultValue">—</div>
+                    </div>
+
+                    <div class="pill">
+                      <div>
+                        <strong>Comprobación</strong>
+                        <div class="hint">Verifica que se cumpla: a² + b² = c²</div>
+                      </div>
+                      <div class="rhs" id="checkValue">—</div>
+                    </div>
+
+                    <div class="hint">
+                      Para calcular un cateto debe cumplirse <span class="kbd">c &gt; cateto</span> y el radicando debe ser ≥ 0.
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Panel derecho -->
+              <section class="pCard">
+                <header class="pHeader">
+                  <h3 class="pH3">Gráfico + solución</h3>
+                  <p class="pSub">Triángulo escalado y desarrollo “como en cuaderno”.</p>
+                </header>
+
+                <div class="canvasWrap">
+                  <canvas id="cv" width="900" height="520"></canvas>
+                </div>
+
+                <div class="legend" id="legend">—</div>
+
+                <div class="notebook" id="stepsBox">
+                  <div class="nbTitle">
+                    <div>Solución paso a paso</div>
+                    <small>MathML (sin librerías) ✅</small>
+                  </div>
+                  <ol class="steps" id="stepsList"></ol>
+                  <div class="stepNote" id="stepsNote"></div>
+                </div>
+              </section>
+            </div>
+            <!-- /Sistema -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer del colegio -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>© <span id="year"></span> FERNANDO STAHL - ISFS. Todos los derechos reservados.</p>
+        <a class="link" href="#top">Volver arriba ↑</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS navbar/dropdown -->
+  <script src="../../shared/site-layout.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- JS del sistema -->
+  <script src="./app.js"></script>
+</body>
+</html>
